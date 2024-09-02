@@ -1,0 +1,4 @@
+title Retail Bank
+
+Rentals -> Retail Bank: Create debit order
+Retail Bank --> Rentals: Debit order ID

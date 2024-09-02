@@ -1,0 +1,242 @@
+openapi: 3.0.3
+info:
+  title: Rental-A-Place
+  description: |-
+    API for managing rentals
+
+    Some useful links:
+    - [GitHub](https://github.com/hleketaniDuncan97/RealEstateAgent-Rental-)
+  version: 1.0.0
+paths:
+  /rentals:
+    post:
+      summary: Create a new rental
+      tags:
+        - Rentals
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRentalBody'
+      responses:
+        '201':
+          description: OK
+        '401':
+          description: Unauthorized
+        '404':
+          description: Rental Not found
+    get:
+      summary: Fetch rentals
+      tags:
+        - Rentals
+      parameters:
+        - in: query
+          name: active
+          schema:
+            type: boolean
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 0
+        - in: query
+          name: size
+          schema:
+            type: integer
+            default: 10
+        - in: query
+          name: sortBy
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: order
+          schema:
+            type: string
+            enum: [asc, desc]
+            default: asc
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Rental'
+        '401':
+          description: Unauthorized
+
+  /rentals/{id}:
+    get:
+      summary: Fetch a specific rental
+      tags:
+        - Rentals
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rental'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Rental not found
+
+    patch:
+      summary: Update a specific rental
+      tags:
+        - Rentals
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchRentalBody'
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '400':
+          description: Bad request
+        '404':
+          description: Rental not found
+
+  /leases:
+    get:
+      summary: Fetch leases
+      tags:
+        - Leases
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 0
+        - in: query
+          name: size
+          schema:
+            type: integer
+            default: 10
+        - in: query
+          name: sortBy
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: order
+          schema:
+            type: string
+            enum: [asc, desc]
+            default: asc
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Lease'
+        '401':
+          description: Unauthorized
+
+  /leases/{id}:
+    get:
+      summary: Fetch a lease by ID
+      tags:
+        - Leases
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Lease'
+        '404':
+          description: Lease not found
+
+components:
+  schemas:
+    CreateRentalBody:
+      type: object
+      required:
+        - propertyId
+        - tenantId
+      properties:
+        propertyId:
+          type: string
+          format: uuid
+        tenantId:
+          type: string
+          format: uuid
+
+    PatchRentalBody:
+      type: object
+      properties:
+        propertyId:
+          type: string
+          format: uuid
+        ownerId:
+          type: string
+          format: uuid
+        tenantId:
+          type: string
+          format: uuid
+        leaseId:
+          type: integer
+
+    Lease:
+      type: object
+      properties:
+        id:
+          type: integer
+        effectiveDate:
+          type: string
+          format: date
+        maturityDate:
+          type: string
+          format: date
+        rate:
+          type: number
+          format: float
+
+    Rental:
+      type: object
+      properties:
+        id:
+          type: integer
+        propertyId:
+          type: string
+          format: uuid
+        ownerId:
+          type: string
+          format: uuid
+        tenantId:
+          type: string
+          format: uuid
+        lease:
+          $ref: '#/components/schemas/Lease'

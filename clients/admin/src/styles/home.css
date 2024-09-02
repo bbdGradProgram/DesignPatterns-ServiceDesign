@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+
+.container {
+    padding: 1.25rem;
+    max-width: 75rem;
+    margin: 0 auto;
+}
+
+.lease-management {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1.25rem;
+}
+
+.lease-management-btn {
+    font-family: "Lora", serif;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 0.62rem 1.25rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 0.25rem;
+}
+
+.rental-management-btn{
+    font-family: "Lora", serif;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 0.62rem 1.25rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    margin-right: 1rem;
+}
+
+.lease-management-btn:hover {
+    background-color: #45a049;
+}
+
+.rental-management-btn:hover {
+    background-color: #45a049;
+}
+
+.summary-flex {
+    display: flex;
+    justify-content: space-between;
+    border: 0.06rem solid #ccc;
+    padding: 1.25rem;
+}
+
+.summary-item {
+    flex: 1;
+    text-align: center;
+    padding: 0 0.6rem;
+}
+
+.summary-item:not(:last-child) {
+    border-right: 0.06rem solid #ccc;
+}
+
+h3 {
+    font-family: "Lora", serif;
+    font-size: 1.5rem;
+    margin-bottom: 0.6rem;
+}
+
+p {
+    font-family: "Lora", serif;
+    font-size: 1.4rem;
+    font-weight: bold;
+}

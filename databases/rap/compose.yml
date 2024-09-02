@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: Pass1234
+      POSTGRES_DB: rap
+    ports:
+      - 5432:5432
+
+  flyway:
+    image: flyway/flyway
+    command: migrate
+    environment:
+      FLYWAY_URL: jdbc:postgresql://db:5432/rap
+      FLYWAY_USER: admin
+      FLYWAY_PASSWORD: Pass1234
+      FLYWAY_LOCATIONS: filesystem:/flyway/sql
+    volumes:
+      - ./migrations:/flyway/sql
+    depends_on:
+      - db

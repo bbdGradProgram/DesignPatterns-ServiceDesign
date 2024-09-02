@@ -1,0 +1,3 @@
+[environments.target1]
+user = "Rap_BBD"
+password = "${localSecret.Flyway Desktop 666b24b6-9cdc-46ed-879e-f7e3f763c839}"

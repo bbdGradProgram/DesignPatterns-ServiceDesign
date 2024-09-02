@@ -1,0 +1,13 @@
+title Persona Manager
+
+
+Persona(Create)->Rentals: POST/rentals
+Rentals->Persona(Confirm): POST/rentHouseSuccess
+
+Persona(Confirm)-->Rentals:OK
+
+alt reject
+Rentals->Persona(Confirm): POST/rentHouseSuccess
+Persona(Confirm)-->Rentals: OK
+end
+Rentals-->Persona(Create): OK

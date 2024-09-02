@@ -1,0 +1,25 @@
+{
+  "name": "rent-a-place",
+  "version": "1.0.0",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "develop:admin": "set DOTENV_CONFIG_PATH=./.admin.env pm2-dev ecosystem.config.js --no-daemon --env development",
+    "start:admin": "set DOTENV_CONFIG_PATH=./.admin.env pm2 start ecosystem.config.js --no-daemon --env production"
+  },
+  "workspaces": [
+    "clients/admin",
+    "servers/rental",
+    "servers/admin",
+    "servers/application"
+  ],
+  "devDependencies": {
+    "@types/pg": "^8.11.6"
+  },
+  "dependencies": {
+    "@types/express": "^4.17.21",
+    "pm2": "^5.4.1",
+    "jsonwebtoken": "^9.0.2"
+  }
+}

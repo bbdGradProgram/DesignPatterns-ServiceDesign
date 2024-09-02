@@ -1,0 +1,3 @@
+title Property Manager (Fetch)
+Rentals->Property Manager: Fetch property
+Property Manager-->Rentals: Return property

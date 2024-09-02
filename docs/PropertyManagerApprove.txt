@@ -1,0 +1,8 @@
+title Property Manager (Approve)
+
+Rentals->Property Manager: Approve rental
+Property Manager-->Rentals: OK
+alt reject
+Rentals->Property Manager: Reject rental
+Property Manager-->Rentals: OK
+end

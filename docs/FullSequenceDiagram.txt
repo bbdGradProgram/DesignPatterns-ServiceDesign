@@ -1,0 +1,11 @@
+title Rentals Sequence Diagram
+actor Persona
+Persona->Rentals:Create rental
+Rentals->Rentals: Check if rental exists
+Rentals-#blue>Property: If not, fetch
+Property--#blue>Rentals: Return property
+Rentals-#orange>Retail Bank: Create debit order
+Retail Bank--#orange>Rentals: Return debit order ID
+Rentals->Rentals: Update rental to occupied and then create a lease
+Rentals->Property: Affirm
+Rentals->Persona: Affirm
